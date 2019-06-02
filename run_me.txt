@@ -1,1 +1,0 @@
-mkdir -p assets/css assets/img assets/js assets/scss assets/uploads assets/vendor pages tests partials/classes partials/functions processings && touch index.php .gitignore script.js _imports.scss && echo "@import 'imports'" > styles.scss && mv script.js assets/js/ && mv _imports.scss styles.scss assets/scss/
