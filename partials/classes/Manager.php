@@ -2,50 +2,94 @@
 
 class Manager
 {
-    private $bdd;
+    private $db;
 
-    public function __construct(PDO $bdd)
+    public function __construct(PDO $db)
     {
-        $this->bdd = $bdd;
+        $this->db = $db;
     }
 
-    public function getAllDestinations()
-    {
-
-    }
-
-    public function getOperatorByDestination()
-    {
-
-    }
-
+    // CRUD
     public function createReview()
     {
-
+        // TODO:
     }
 
-    public function getReviewByOperatorId()
+    public function updateOperatorToPremium(int $idTourOperator)
     {
-
+        $q = $this->db
+            ->prepare("UPDATE tour_operators SET tour_operators.is_premium = 1
+                    WHERE tour_operators.id = ?");
+        $q->execute([
+            $idTourOperator
+        ]);
     }
 
-    public function getAllOperators()
+    /**
+     * $kwargs = ['name', 'grade', 'link', 'is_premium'];
+     */
+    public function createTourOperator(array $kwargs)
     {
-
-    }
-
-    public function updateOperatorToPremium()
-    {
-
-    }
-
-    public function createTourOperator()
-    {
-
+        $q = $this->db
+            ->prepare("INSERT INTO tour_operators(name, grade, link, is_premium)
+                    VALUES(?, ?, ?, ?)");
+        $q->execute(
+            $kwargs['name'],
+            $kwargs['grade'] | 0,
+            $kwargs['link'],
+            $kwargs['is_premium'] | 0
+        );
     }
 
     public function createDestination()
     {
+        // TODO:
+    }
 
+
+
+
+    public function getAllDestinations()
+    {
+        $q = $this->db->prepare("SELECT destinations.* FROM destinations");
+        $q->execute();
+
+        return $q->fetchAll();
+    }
+
+    public function getOperatorByDestination(string $location)
+    {
+        $q = $this->db
+            ->prepare("SELECT tour_operators.*
+                        FROM tour_operators
+                        INNER JOIN destinations
+                        ON tour_operators.id = destinations.id_tour_operator
+                        WHERE destinations.location = ?");
+        $q->execute([
+            $location
+        ]);
+
+        return $q->fetchAll();
+    }
+
+    public function getReviewsByOperatorId(int $id)
+    {
+        $q = $this->db
+            ->prepare("SELECT reviews.*
+                       FROM reviews
+                       WHERE reviews.id_tour_operator = ?");
+        $q->execute([
+            $id
+        ]);
+
+        return $q->fetchAll();
+    }
+
+    public function getAllOperators()
+    {
+        $q = $this->db->prepare("SELECT tour_operators.* FROM tour_operators");
+        $q->execute();
+
+        return $q->fetchAll();
     }
 }
