@@ -10,9 +10,19 @@ class Manager
     }
 
     // CRUD
-    public function createReview()
+    /**
+     * $kwargs = ['message', 'author', 'id_tour_operator'];
+     */
+    public function createReview(array $kwargs)
     {
-        // TODO:
+        $q = $this->db
+            ->prepare("INSERT INTO reviews(message, author, id_tour_operator)
+                    VALUES(?, ?, ?)");
+        $q->execute([
+            $kwargs['message'] | "Le client n'a pas laissé de commentaire.",
+            $kwargs['author'],
+            $kwargs['id_tour_operator']
+        ]);
     }
 
     public function updateOperatorToPremium(int $idTourOperator)
@@ -33,17 +43,27 @@ class Manager
         $q = $this->db
             ->prepare("INSERT INTO tour_operators(name, grade, link, is_premium)
                     VALUES(?, ?, ?, ?)");
-        $q->execute(
+        $q->execute([
             $kwargs['name'],
             $kwargs['grade'] | 0,
             $kwargs['link'],
             $kwargs['is_premium'] | 0
-        );
+        ]);
     }
 
-    public function createDestination()
+    /**
+     * $kwargs = ['location', 'price', 'id_tour_operator'];
+     */
+    public function createDestination(array $kwargs)
     {
-        // TODO:
+        $q = $this->db
+            ->prepare("INSERT INTO destinations(location, price, id_tour_operator)
+                    VALUES(?, ?, ?)");
+        $q->execute([
+            $kwargs['location'],
+            $kwargs['price'],
+            $kwargs['id_tour_operator']
+        ]);
     }
 
 
@@ -72,14 +92,14 @@ class Manager
         return $q->fetchAll();
     }
 
-    public function getReviewsByOperatorId(int $id)
+    public function getReviewsByOperatorId(int $idTourOperator)
     {
         $q = $this->db
             ->prepare("SELECT reviews.*
                        FROM reviews
                        WHERE reviews.id_tour_operator = ?");
         $q->execute([
-            $id
+            $idTourOperator
         ]);
 
         return $q->fetchAll();
