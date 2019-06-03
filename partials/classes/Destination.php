@@ -15,11 +15,11 @@ class Destination
         $this->hydrate($hydrate);
     }
 
-    public function hydrate(array $properties) 
+    public function hydrate(array $properties)
     {
         foreach ($properties as $key => $value) {
             $method = 'set' . ucfirst($key);
-            if (method_exists(this, $method)) {
+            if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
@@ -30,6 +30,11 @@ class Destination
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function getLocation()

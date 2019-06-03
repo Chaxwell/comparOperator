@@ -11,7 +11,7 @@ class Manager
 
     // CRUD
     /**
-     * $kwargs = ['message', 'author', 'id_tour_operator'];
+     * $kwargs = ['message', 'author', 'idTourOperator'];
      */
     public function createReview(array $kwargs)
     {
@@ -19,9 +19,9 @@ class Manager
             ->prepare("INSERT INTO reviews(message, author, id_tour_operator)
                     VALUES(?, ?, ?)");
         $q->execute([
-            $kwargs['message'] | "Le client n'a pas laissé de commentaire.",
+            $kwargs['message'],
             $kwargs['author'],
-            $kwargs['id_tour_operator']
+            $kwargs['idTourOperator']
         ]);
     }
 
@@ -36,7 +36,7 @@ class Manager
     }
 
     /**
-     * $kwargs = ['name', 'grade', 'link', 'is_premium'];
+     * $kwargs = ['name', 'grade', 'link', 'isPremium'];
      */
     public function createTourOperator(array $kwargs)
     {
@@ -47,12 +47,12 @@ class Manager
             $kwargs['name'],
             $kwargs['grade'] | 0,
             $kwargs['link'],
-            $kwargs['is_premium'] | 0
+            $kwargs['isPremium'] | 0
         ]);
     }
 
     /**
-     * $kwargs = ['location', 'price', 'id_tour_operator'];
+     * $kwargs = ['location', 'price', 'idTourOperator'];
      */
     public function createDestination(array $kwargs)
     {
@@ -62,7 +62,7 @@ class Manager
         $q->execute([
             $kwargs['location'],
             $kwargs['price'],
-            $kwargs['id_tour_operator']
+            $kwargs['idTourOperator']
         ]);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-class Review 
+class Review
 {
     // DB Representation
     private $id;
@@ -19,7 +19,7 @@ class Review
     {
         foreach ($properties as $key => $value) {
             $method = 'set' . ucfirst($key);
-            if (method_exists(this, $method)) {
+            if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
@@ -30,6 +30,11 @@ class Review
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function getMessage()

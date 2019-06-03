@@ -1,6 +1,6 @@
 <?php
 
-class TourOperator 
+class TourOperator
 {
     // DB Representation
     private $id;
@@ -20,7 +20,7 @@ class TourOperator
     {
         foreach ($properties as $key => $value) {
             $method = 'set' . ucfirst($key);
-            if (method_exists(this, $method)) {
+            if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
@@ -31,6 +31,11 @@ class TourOperator
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id;
     }
 
     public function getName()

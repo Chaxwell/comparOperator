@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700|Righteous&display=swap");
+.bg-azure {
+  background-color: azure;
+}
+
+.w-85 {
+  width: 85%;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+.navbar {
+  border-bottom: 1px solid rgba(25, 25, 25, 0.1);
+  -webkit-box-shadow: 0 0 15px 4px rgba(207, 207, 207, 0.35);
+  -moz-box-shadow: 0 0 15px 4px rgba(207, 207, 207, 0.35);
+  box-shadow: 0 0 15px 4px rgba(207, 207, 207, 0.35);
+}
+.navbar-title {
+  font-size: 2em;
+  font-family: "Righteous", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.navbar-title span.compar {
+  color: lightblue;
+}
+.navbar-title span.operator {
+  color: orange;
+  font-weight: bold;
+}
+
+.btn-outline-orange {
+  background-color: whitesmoke;
+  border: 1px solid orange;
+  color: #222;
+  transition: all 100ms linear;
+  -webkit-transition: all 100ms linear;
+  -moz-transition: all 100ms linear;
+  -ms-transition: all 100ms linear;
+  -o-transition: all 100ms linear;
+}
+.btn-outline-orange:hover {
+  background-color: orange;
+  color: whitesmoke;
+  transition: all 100ms linear;
+  -webkit-transition: all 100ms linear;
+  -moz-transition: all 100ms linear;
+  -ms-transition: all 100ms linear;
+  -o-transition: all 100ms linear;
+}
+
+.img-operator {
+  border: 1px solid rgba(25, 25, 25, 0.1);
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+nav a,
+.destination {
+  text-decoration: none !important;
+}
+
+/*# sourceMappingURL=styles.css.map */
