@@ -6,7 +6,7 @@ require('../partials/classes/Review.php');
 
 $manager = new Manager($db);
 
-if (isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $review = new Review([
             'author' => $_POST['nom'],
             'message' => $_POST['commentaireTO'],

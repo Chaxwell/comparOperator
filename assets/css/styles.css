@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700|Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Karla:400,700|Montserrat:400,600&display=swap");
 .bg-azure {
   background-color: azure;
 }
@@ -9,7 +9,10 @@
 
 body {
   box-sizing: border-box;
-  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", sans-serif;
+}
+body h5 {
+  font-weight: bold;
 }
 
 .navbar {
@@ -20,7 +23,7 @@ body {
 }
 .navbar-title {
   font-size: 2em;
-  font-family: "Righteous", sans-serif;
+  font-family: "Karla", sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -36,6 +39,7 @@ body {
   background-color: whitesmoke;
   border: 1px solid orange;
   color: #222;
+  max-width: 362px;
   transition: all 100ms linear;
   -webkit-transition: all 100ms linear;
   -moz-transition: all 100ms linear;
@@ -64,6 +68,82 @@ body {
 nav a,
 .destination {
   text-decoration: none !important;
+}
+
+.card-description .name {
+  font-size: 2.3em;
+  font-family: "Karla", sans-serif;
+  text-transform: capitalize;
+}
+.card-description .location {
+  font-size: 1.6em;
+  text-transform: capitalize;
+}
+.card-description .price {
+  color: #cc8400;
+  font-weight: bolder;
+  font-size: 2em;
+  font-family: "Karla", sans-serif;
+}
+.card-description .review {
+  color: #222;
+  font-size: 1em;
+}
+.card-description .review i {
+  font-weight: bold;
+}
+.card-description .review .message {
+  margin: 0;
+  border-bottom: 1px solid black;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.card-description .review .message.even {
+  background-color: #d4ebf2;
+}
+.card-description .review .message.odd {
+  background-color: whitesmoke;
+}
+.card-description .review .grade {
+  color: orange;
+  font-weight: bolder;
+  user-select: none;
+}
+
+.page-to {
+  background-image: url("");
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 65px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

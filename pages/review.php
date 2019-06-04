@@ -25,11 +25,6 @@ if (isset($_GET['to'])) {
     <title>commentaires</title>
 
     <style>
-        #btn-commentaire {
-            margin-top: 50px;
-            color:
-        }
-
         #affichageCommentaire {
             margin-top: 30px;
         }
@@ -39,26 +34,33 @@ if (isset($_GET['to'])) {
 <body>
     <?php require('../partials/navbar.php') ?>
 
+        <!-- Formulaire our laisser un commentaire -->
+
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-3">
-                <form action="../processings/process-review.php" method="post" enctype="multipart/form-data">
-                    <label>Nom ou pseudo :</label>
-                    <input class="form-control shadow" name="nom" type="text" required>
+            <div class="col-12 col-sm-12 col-md-4">
+                <form action="../processings/process-review.php" method="post">
+                    <div class="form-group">
+                        <input class="form-control shadow" name="nom" type="text" placeholder="Nom ou pseudo" required>
+                    </div>
             </div>
-            <div class="col-sm-12 col-md-4">
-                <label>Laisser un commentaire :</label>
-                <textarea class="form-control shadow" name="commentaireTO" type="text" required></textarea>
+            <div class="col-12 col-sm-12 col-md-6">
+            <div class="form-group">
+                <textarea class="form-control shadow" name="commentaireTO" type="text" placeholder="Laisser votre review" required></textarea>
+            </div>
             </div>
 
+            <!--BONUS LAISSER UNE NOTE-->
+
             <!-- <div class="col-sm-12 col-md-3">
-                <label>Laisser une note /5:</label>
-                <input class="form-control shadow" name="noteTO" type="text">
+                <div class="form-group">
+                <input class="form-control shadow" name="noteTO" type="text placeholder="Laisser une note /5">
             </div> -->
 
             <input type="hidden" name="to" value="<?= $_GET['to'] ?>">
+
             <div class="col-sm-12 col-md-2">
-                <button id="btn-commentaire" name="submit" class="btn btn-outline-orange" type="submit">Envoyer</button>
+                <button id="btn-commentaire" name="submit" class="btn btn-outline-orange" type="submit">Envoyer votre review</button>
             </div>
             </form>
         </div>
@@ -68,21 +70,31 @@ if (isset($_GET['to'])) {
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12 sm-12">
+            <div class="col-12 col-sm-12 col-md-12">
                 <div id="affichageCommentaire" class="card shadow" width="90%">
                     <div class="card-body">
-                        <?php
-                        foreach ($data as $d) {
-                            echo '<br>';
-                            echo "{$d['message']} de la personne : {$d['author']}";
-                            echo '<br>';
-                        }
-                        ?>
+                        <table class="table table-hover">
+                            <thead>
+                                <th>Reviews</th>
+                                <th> Name</th>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($data as $d) {
+                                    echo '
+                                    <tr>
+                                    <td>' . $d['message'] . '</td>
+                                    <td>' . $d['author'] . '</td>
+                                    </tr>';
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- FIN DU BLOCK COMMENTAIRE -->
 
         <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>

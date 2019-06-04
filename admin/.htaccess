@@ -1,3 +1,4 @@
+# Ne fonctionne pas avec devilbox ?
 # Deny access to filenames starting with dot(.)
 <FilesMatch "^\.">
 Order allow,deny
@@ -7,5 +8,6 @@ Deny from all
 # Password protect files
 AuthName "Restricted area. Admin only."
 AuthType Basic
-AuthUserFile "C:\Wampserver64\www\comparOperator\admin\.htpasswd"
+AuthUserFile "/home/chris/Documents/code_simplon/git/devilbox/data/www/comparOperator/htdocs
+/admin/.htpasswd"
 Require valid-user

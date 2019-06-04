@@ -92,17 +92,43 @@ class Manager
         return $q->fetchAll();
     }
 
-    public function getReviewsByOperatorId(int $idTourOperator)
+    public function getDestinationsByOperatorId(int $idTourOperator)
     {
         $q = $this->db
-            ->prepare("SELECT reviews.*
-                       FROM reviews
-                       WHERE reviews.id_tour_operator = ?");
+            ->prepare("SELECT destinations.*
+                       FROM destinations
+                       WHERE destinations.id_tour_operator = ?");
         $q->execute([
             $idTourOperator
         ]);
 
         return $q->fetchAll();
+    }
+
+    public function getReviewsByOperatorId(int $idTourOperator)
+    {
+        $q = $this->db
+            ->prepare("SELECT reviews.*
+                       FROM reviews
+                       WHERE reviews.id_tour_operator = ? ORDER BY reviews.id DESC LIMIT 0, 25");
+        $q->execute([
+            $idTourOperator
+        ]);
+
+        return $q->fetchAll();
+    }
+
+    public function isOperatorPremium(int $idTourOperator)
+    {
+        $q = $this->db
+            ->prepare("SELECT tour_operators.*
+                       FROM tour_operators
+                       WHERE tour_operators.is_premium = 1");
+        $q->execute();
+
+        if ($q->fetch() == null) return true;
+
+        return false;
     }
 
     public function getAllOperators()
