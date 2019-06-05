@@ -46,7 +46,7 @@ class Manager
                     VALUES(?, ?, ?, ?, ?)");
         $q->execute([
             $kwargs['name'],
-            $kwargs['grade'] | 0,
+            $kwargs['grade'],
             $kwargs['link'],
             $kwargs['isPremium'],
             $kwargs['logo']

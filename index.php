@@ -14,7 +14,7 @@
 <body>
     <?php require('partials/navbar.php'); ?>
 
-    <!--  1 ere ligne de carte de destination -->
+    <!--  1ere ligne de carte de destination -->
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-4">
@@ -132,8 +132,9 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+    <?php require('partials/footer.php'); ?>
 
 
     <script src="assets/vendor/jquery/dist/jquery.min.js"></script>

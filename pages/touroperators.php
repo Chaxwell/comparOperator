@@ -50,10 +50,12 @@ $maxNickLength = 12;
             // par exemple : maroc
             if (in_array($destination, $allowedDestinations)) {
                 $operators = $manager->getOperatorByDestination($destination);
-
+                if ($operators == null) echo "<h5 class=\"text-center\">Il n'y a pas de TO pour cette destination.</h5>";
                 foreach ($operators as $operator) {
                     $allDestinations = $manager->getDestinationsByOperatorId($operator['id']);
                     $dataMessages = $manager->getReviewsByOperatorId($operator['id'], 0, 3);
+
+
 
                     echo "<div class=\"row mb-5\">
                     <div class=\"card col-10 col-sm-12 col-md-12 mx-auto shadow\">
@@ -105,15 +107,17 @@ $maxNickLength = 12;
                                     </p>";
                         }
                     }
-                            echo "</div>
+                    echo "</div>
                             <div class=\"price col-12 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center align-items-center\"><span class=\"currency\">
                             ";
-                            foreach ($allDestinations as $dest) {
-                                if ($dest['location'] == $destination && $dest['id_tour_operator'] == $operator['id']) {
-                                    echo $dest['price'] . '€';
-                                }
-                            }
-                            echo "</span></div>
+                    foreach ($allDestinations as $dest) {
+                        if ($dest['location'] == $destination && $dest['id_tour_operator'] == $operator['id']) {
+                            echo $dest['price'] . '€';
+                        }
+                    }
+
+
+                    echo "</span></div>
                         </div>
                         <!-- Makes the whole card clickable -->
                         <a href=\"review.php?to={$operator['id']}\" class=\"stretched-link\"></a>

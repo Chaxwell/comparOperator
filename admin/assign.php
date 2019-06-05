@@ -28,7 +28,7 @@ $dest = $manager->getAllDestinations();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../assets/vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
-    <title>Document</title>
+    <title>Assign</title>
 
 </head>
 
@@ -36,21 +36,20 @@ $dest = $manager->getAllDestinations();
     <?php require('../partials/navbar.php'); ?>
 
     <div class="sidenav">
-        <a href="/">Site comparOperator</a><br>
         <a href="/admin/create.php">Ajouter un T.O</a><br>
-        <a href="/admin/assign.php">Assigner un T.O / destination</a>
+        <a href="/admin/assign.php" style="font-style: italic;">Assigner un T.O / destination</a>
     </div>
     <div class="container">
-        <form action="../processings/process-assign-to.php" method="post">
+        <form action="../processings/process-assign-to.php" method="post" autocomplete="off">
 
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="form-group">
-                        <select id="toSelect" name="toSelect">
+                        <select id="toSelect" name="toSelect" style="text-transform: capitalize;">
                             <?php
                             foreach ($data as $d) {
                                 echo
-                                    "<option value=\"{$d['id']}\">
+                                    "<option value=\"{$d['id']}\" style=\"text-transform: capitalize;\">
                                     {$d['name']}</option>";
                             }
                             ?>
@@ -61,9 +60,8 @@ $dest = $manager->getAllDestinations();
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="form-group">
-
                         <select id="destinationSelect" name="destinationSelect">
-                            <option value="maroc">Maroc</option>
+                            <!-- <option value="maroc">Maroc</option>
                             <option value="bresil">Bresil</option>
                             <option value="ilemaurice">Ile Maurice</option>
                             <option value="portugal">Portugal</option>
@@ -71,8 +69,20 @@ $dest = $manager->getAllDestinations();
                             <option value="usa">USA</option>
                             <option value="france">France</option>
                             <option value="mexique">Mexique</option>
-                            <option value="espagne">Espagne</option>
-
+                            <option value="espagne">Espagne</option> -->
+                            <option value="" id="testo"></option>
+                            <script>
+                                // TODO: Create element option for each new br from fetch
+                                const select = document.querySelector('#testo');
+                                
+                                fetch('fetches.php')
+                                .then(function(response) {
+                                    return response.text();
+                                })
+                                .then(function(myText) {
+                                    select.innerHTML = myText;
+                                });
+                            </script>                            
                         </select>
                     </div>
                 </div>
@@ -84,8 +94,8 @@ $dest = $manager->getAllDestinations();
                     </div>
                 </div>
             </div>
-            <div class="row d-flex justify-content-center">
-                <div class="col-sm-12 col-md-2">
+            <div class="row d-flex justify-content-center mt-5">
+                <div class="col-sm-12 col-md-6 d-flex justify-content-center">
                     <button name="submit" class="btn btn-outline-orange" type="submit">Assigner votre destination</button>
                 </div>
             </div>

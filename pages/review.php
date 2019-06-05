@@ -70,16 +70,16 @@ if (isset($_GET['to'])) {
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
+                                <th>Name</th>
                                 <th>Reviews</th>
-                                <th> Name</th>
                             </thead>
                             <tbody>
                                 <?php
                                 foreach ($data as $d) {
                                     echo '
                                     <tr>
-                                    <td>' . $d['message'] . '</td>
                                     <td>' . $d['author'] . '</td>
+                                    <td>' . $d['message'] . '</td>
                                     </tr>';
                                 }
                                 ?>

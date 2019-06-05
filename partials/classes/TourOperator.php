@@ -90,6 +90,7 @@ class TourOperator
 
     public function uploadLogoToServer()
     {
+        // REFACTOR:
         $target_dir = "../assets/uploads/operators/";
         $target_file = $target_dir . basename($this->logoFile['name']);
         $uploadOk = 1;
@@ -110,11 +111,17 @@ class TourOperator
         if ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png")
             $uploadOk = 0;
 
+        // $this->resizeImageToSquare();
         // Check if $uploadOk is set to 0 by an error
         if (!$uploadOk) die('An error occured');
         else {
             if (!move_uploaded_file($this->logoFile["tmp_name"], $target_file))
                 return false;
         }
+    }
+
+    public function resizeImageToSquare()
+    {
+        // TODO: Utiliser Imagick https://www.php.net/manual/fr/imagick.resizeimage.php
     }
 }

@@ -25,13 +25,12 @@ require('../partials/debug/pprint.php');
     <?php require('../partials/navbar.php'); ?>
 
     <div class="sidenav">
-        <a href="/">Site comparOperator</a><br>
-        <a href="/admin/create.php">Ajouter un T.O</a><br>
+        <a href="/admin/create.php" style="font-style: italic;">Ajouter un T.O</a><br>
         <a href="/admin/assign.php">Assigner un T.O / destination</a>
     </div>
 
     <div class="container adminIndex">
-        <form action="../processings/process-register-to.php" method="post" enctype="multipart/form-data">
+        <form action="../processings/process-register-to.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="form-group">
@@ -58,13 +57,12 @@ require('../partials/debug/pprint.php');
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label>Premium</label>
-                        <input name="premium" value="1" type="radio">
-                        <input name="premium" value="0" type="radio" style="display: none;" checked>
+                        <input name="premium" value="1" type="checkbox">
                     </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-sm-12 col-md-2">
+                <div class="col-sm-12 col-md-6 d-flex justify-content-center">
                     <button name="submit" class="btn btn-outline-orange" type="submit">
                         Enregistrer votre T.O
                     </button>

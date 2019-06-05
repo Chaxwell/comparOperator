@@ -75,15 +75,16 @@ CREATE TABLE `tour_operators` (
   `name` varchar(150) NOT NULL,
   `grade` int(2) NOT NULL,
   `link` varchar(255) NOT NULL,
-  `is_premium` tinyint(1) NOT NULL DEFAULT 0
+  `is_premium` tinyint(1) NOT NULL DEFAULT 0,
+  `logo` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tour_operators`
 --
 
-INSERT INTO `tour_operators` (`id`, `name`, `grade`, `link`, `is_premium`) VALUES
-(1, 'club med', 5, 'https://www.clubmed.fr/', 0);
+INSERT INTO `tour_operators` (`id`, `name`, `grade`, `link`, `is_premium`, `logo`) VALUES
+(1, 'club med', 5, 'https://www.clubmed.fr/', 0, '');
 
 --
 -- Indexes for dumped tables

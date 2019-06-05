@@ -2,11 +2,14 @@
 
 if (isset($_POST['submit'])) {
     require('../partials/classes/Manager.php');
-require('../partials/debug/pprint.php');
-require('../partials/cfg/db.php');
-require('../partials/classes/TourOperator.php');
+    require('../partials/debug/pprint.php');
+    require('../partials/cfg/db.php');
+    require('../partials/classes/TourOperator.php');
 
-$manager = new Manager($db);
+    if(empty($_POST['premium'])) $_POST['premium'] = 0;
+    
+    $manager = new Manager($db);
+
     $TourOperator = new TourOperator([
         'name' => $_POST['nomTO'],
         'link' => $_POST['lienTO'],
@@ -26,4 +29,4 @@ $manager = new Manager($db);
     $TourOperator->uploadLogoToServer();
 }
 
-header('Location: ../admin/index.php');
+// header('Location: ../admin/index.php');
