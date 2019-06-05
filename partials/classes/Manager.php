@@ -16,6 +16,7 @@ class Manager
     public function createReview(array $kwargs)
     {
         $q = $this->db
+
             ->prepare("INSERT INTO reviews(message, author, id_tour_operator)
                     VALUES(?, ?, ?)");
         $q->execute([
@@ -36,18 +37,19 @@ class Manager
     }
 
     /**
-     * $kwargs = ['name', 'grade', 'link', 'isPremium'];
+     * $kwargs = ['name', 'grade', 'link', 'isPremium', 'logo'];
      */
     public function createTourOperator(array $kwargs)
     {
         $q = $this->db
-            ->prepare("INSERT INTO tour_operators(name, grade, link, is_premium)
-                    VALUES(?, ?, ?, ?)");
+            ->prepare("INSERT INTO tour_operators(name, grade, link, is_premium, logo)
+                    VALUES(?, ?, ?, ?, ?)");
         $q->execute([
             $kwargs['name'],
             $kwargs['grade'] | 0,
             $kwargs['link'],
-            $kwargs['isPremium'] | 0
+            $kwargs['isPremium'],
+            $kwargs['logo']
         ]);
     }
 
@@ -105,14 +107,16 @@ class Manager
         return $q->fetchAll();
     }
 
-    public function getReviewsByOperatorId(int $idTourOperator)
+    public function getReviewsByOperatorId(int $idTourOperator, int $start = 0, int $end = 25)
     {
         $q = $this->db
             ->prepare("SELECT reviews.*
                        FROM reviews
-                       WHERE reviews.id_tour_operator = ? ORDER BY reviews.id DESC LIMIT 0, 25");
+                       WHERE reviews.id_tour_operator = ? ORDER BY reviews.id DESC LIMIT ?, ?");
         $q->execute([
-            $idTourOperator
+            $idTourOperator,
+            $start,
+            $end
         ]);
 
         return $q->fetchAll();
@@ -123,10 +127,13 @@ class Manager
         $q = $this->db
             ->prepare("SELECT tour_operators.*
                        FROM tour_operators
-                       WHERE tour_operators.is_premium = 1");
-        $q->execute();
+                       WHERE tour_operators.is_premium = 1
+                       AND tour_operators.id = ?");
+        $q->execute([
+            $idTourOperator
+        ]);
 
-        if ($q->fetch() == null) return true;
+        if ($q->fetch()['is_premium'] == 1) return true;
 
         return false;
     }

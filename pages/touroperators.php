@@ -18,6 +18,8 @@ $allowedDestinations = [
     'espagne'
 ];
 
+$maxReviewLength = 100;
+$maxNickLength = 12;
 
 ?>
 
@@ -48,36 +50,25 @@ $allowedDestinations = [
             // par exemple : maroc
             if (in_array($destination, $allowedDestinations)) {
                 $operators = $manager->getOperatorByDestination($destination);
-                // if $dataDestinations['location'] = $destination;
-                $viewTemplate = '';
 
-                // pprint($operators);
                 foreach ($operators as $operator) {
-                    $dataDestinations = $manager->getDestinationsByOperatorId($operator['id']);
-                    $dataReviews = $manager->getReviewsByOperatorId($operator['id']);
+                    $allDestinations = $manager->getDestinationsByOperatorId($operator['id']);
+                    $dataMessages = $manager->getReviewsByOperatorId($operator['id'], 0, 3);
 
-                    // Get le prix ?
-                    // foreach ($dataDestinations as $data) {
-                    //     if (in_array($destination, $data['location'])) {
-
-                    //     }
-                    // }
-
-
-            echo "<div class=\"row mb-5\">
-            <div class=\"card col-10 col-sm-12 col-md-12 mx-auto shadow\">
-                <div class=\"row no-gutters\">
-                    <div class=\"card-logo col-10 col-sm-4 col-md-2 my-3 ml-3\">
-                        <a href=\"#\">
-                            <img class=\"shadow-sm img-operator img-fluid\" src=\"http://picsum.photos/600\" alt=\"picsum\">
+                    echo "<div class=\"row mb-5\">
+                    <div class=\"card col-10 col-sm-12 col-md-12 mx-auto shadow\">
+                        <div class=\"row no-gutters\">
+                            <div class=\"card-logo col-10 col-sm-4 col-md-2 my-3 ml-3\">
+                                <a href=\"#\">
+                            <img class=\"shadow-sm img-operator img-fluid\" src=\"../assets/uploads/operators/{$operator['logo']}\" alt=\"picsum\">
                         </a>
                         ";
-                        if($manager->isOperatorPremium($operator['id'])) { //FIXME:
+                    if ($manager->isOperatorPremium($operator['id'])) {
                         echo "<div class=\"premium mt-3 d-flex justify-content-center\">
-                            <a href=\"#\" class=\"btn btn-outline-orange w-100\">Visiter</a>
-                        </div>";
-                        }
-                   echo " </div>
+                                <a href=\"{$operator['link']}\" target=\"_blank\" class=\"btn btn-outline-orange w-100\">Visiter</a>
+                            </div>";
+                    }
+                    echo " </div>
                     <div class=\"card-description col-10 col-sm-7 col-md-9 my-3 ml-3 text-center\">
                         <div class=\"row no-gutters\">
                             <div class=\"name col-12 col-sm-12 col-md-12 col-lg-5\">
@@ -89,29 +80,43 @@ $allowedDestinations = [
                         </div>
                         <div class=\"row no-gutters\">
                             <div class=\"review col-12 col-sm-8 col-md-9 col-lg-10\">
-                                <p class=\"message even\">
-                                    <span class=\"grade d-flex justify-content-center flex-wrap\">
-                                        &starf;&starf;&starf;&star;&star;
-                                    </span>
-                                    <i>Michelle :</i> Lorem ipsum bla bla dolor amet sic machin doctor truc bidule (max 110)
-                                </p>
-                                <p class=\"message odd\">
-                                    <span class=\"grade d-flex justify-content-center flex-wrap\">
-                                        &starf;&starf;&starf;&starf;&star;
-                                    </span>
-                                    <i>Michelle :</i> Lorem ipsum bla bla dolor amet sic machin doctor truc bidule (max 110)
-                                </p>
-                                <p class=\"message even\">
+                            ";
+                    foreach ($dataMessages as $n => $data) {
+                        if (strlen($data['message']) > $maxReviewLength) {
+                            $data['message'] = trim(substr($data['message'], 0, 100)) . '...';
+                        }
+                        if (strlen($data['author']) > $maxNickLength) {
+                            $data['author'] = substr($data['author'], 0, 15);
+                        }
+
+                        if ($n % 2 == 0) {
+                            echo "<p class=\"message even\">
+                                        <span class=\"grade d-flex justify-content-center flex-wrap\">
+                                            &starf;&starf;&starf;&star;&star;
+                                        </span>
+                                        <i>{$data['author']} :</i> {$data['message']}
+                                    </p>";
+                        } else {
+                            echo "<p class=\"message odd\">
                                     <span class=\"grade d-flex justify-content-center flex-wrap\">
                                         &starf;&starf;&starf;&starf;&starf;
                                     </span>
-                                    <i>Michelle :</i> Lorem ipsum bla bla dolor amet sic machin doctor truc bidule (max 110)
-                                </p>
-                            </div>
-                            <div class=\"price col-12 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center align-items-center\"><span class=\"currency\">1655€</span></div>
+                                    <i>{$data['author']} :</i> {$data['message']}
+                                    </p>";
+                        }
+                    }
+                            echo "</div>
+                            <div class=\"price col-12 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center align-items-center\"><span class=\"currency\">
+                            ";
+                            foreach ($allDestinations as $dest) {
+                                if ($dest['location'] == $destination && $dest['id_tour_operator'] == $operator['id']) {
+                                    echo $dest['price'] . '€';
+                                }
+                            }
+                            echo "</span></div>
                         </div>
                         <!-- Makes the whole card clickable -->
-                        <a href=\"#\" class=\"stretched-link\"></a>
+                        <a href=\"review.php?to={$operator['id']}\" class=\"stretched-link\"></a>
                     </div>
                 </div>
             </div>

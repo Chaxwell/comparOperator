@@ -24,11 +24,6 @@ if (isset($_GET['to'])) {
     <link rel="stylesheet" href="../assets/css/styles.css">
     <title>commentaires</title>
 
-    <style>
-        #affichageCommentaire {
-            margin-top: 30px;
-        }
-    </style>
 </head>
 
 <body>
@@ -68,10 +63,10 @@ if (isset($_GET['to'])) {
 
     <!-- affichage des commentaires -->
 
-    <div class="container">
+    <div id="affichageCommentaire" class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12">
-                <div id="affichageCommentaire" class="card shadow" width="90%">
+                <div class="card shadow">
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
@@ -90,11 +85,13 @@ if (isset($_GET['to'])) {
                                 ?>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+
         <!-- FIN DU BLOCK COMMENTAIRE -->
 
         <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>

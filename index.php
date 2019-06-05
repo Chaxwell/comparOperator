@@ -9,25 +9,6 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Les plus belles destinations avec comparOperator</title>
 
-
-    <style>
-        h5 {
-            font-weight: bold;
-        }
-
-        .card {
-            -webkit-transform: scale(1);
-            transform: scale(1);
-            -webkit-transition: .3s ease-in-out;
-            transition: .3s ease-in-out;
-        }
-
-        .card:hover {
-            -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-        }
-    </style>
-
 </head>
 
 <body>
@@ -37,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-4">
-                <div class="card shadow bg-white rounded" style="width: 18rem;">
+                <div class="card destinations shadow bg-white rounded" style="width: 18rem;">
                     <img src="assets/img/destinations/maroc.jpg" class="card-img-top" alt="photo paysage maroc">
                     <div class="card-body">
                         <h5 class="card-title">Maroc / Marrakech</h5>
@@ -48,7 +29,7 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
-                <div class="card shadow mb-5 bg-white rounded" style="width: 18rem;">
+                <div class="card destinations shadow mb-5 bg-white rounded" style="width: 18rem;">
                     <img src="assets/img/destinations/bresil.jpg" class="card-img-top" alt="photo paysage bresil">
                     <div class="card-body">
                         <h5 class="card-title">Bresil / Rio de Janeiro</h5>
@@ -60,7 +41,7 @@
             </div>
 
             <div class="col-sm-12 col-md-4">
-                <div class="card shadow mb-5 bg-white rounded" style="width: 18rem;">
+                <div class="card destinations shadow mb-5 bg-white rounded" style="width: 18rem;">
                     <img src="assets/img/destinations/ilemaurice.jpg" class="card-img-top" alt="photo paysage Ile Maurice">
                     <div class="card-body">
                         <h5 class="card-title">Ile Maurice / Belle Mare</h5>
@@ -76,7 +57,7 @@
         <!--  2 eme ligne de carte de destination -->
         <div class="row">
             <div class="col-sm-12 col-md-4">
-                <div class="card shadow mb-5 bg-white rounded" style="width: 18rem;">
+                <div class="card destinations shadow mb-5 bg-white rounded" style="width: 18rem;">
                     <img src="assets/img/destinations/portugal.jpg" class="card-img-top" alt="photo paysage Portugal">
                     <div class="card-body">
                         <h5 class="card-title">Portugal / Lisbonne</h5>
@@ -88,7 +69,7 @@
             </div>
 
             <div class="col-sm-12 col-md-4">
-                <div class="card shadow mb-5 bg-white rounded" style="width: 18rem;">
+                <div class="card destinations shadow mb-5 bg-white rounded" style="width: 18rem;">
                     <img src="assets/img/destinations/japon.jpg" class="card-img-top" alt="photo paysage Japon">
                     <div class="card-body">
                         <h5 class="card-title">Japon / Osaka</h5>
@@ -100,7 +81,7 @@
             </div>
 
             <div class="col-sm-12 col-md-4">
-                <div class="card shadow mb-5 bg-white rounded" style="width: 18rem;">
+                <div class="card destinations shadow mb-5 bg-white rounded" style="width: 18rem;">
                     <img src="assets/img/destinations/usa.jpg" class="card-img-top" alt="photo paysage USA">
                     <div class="card-body">
                         <h5 class="card-title">USA / New York</h5>
@@ -116,7 +97,7 @@
         <!--  3 eme ligne de carte de destination -->
         <div class="row">
             <div class="col-sm-12 col-md-4">
-                <div class="card shadow mb-5 bg-white rounded" style="width: 18rem;">
+                <div class="card destinations shadow mb-5 bg-white rounded" style="width: 18rem;">
                     <img src="assets/img/destinations/france.jpg" class="card-img-top" alt="photo paysage France">
                     <div class="card-body">
                         <h5 class="card-title">France / Corse</h5>
@@ -128,7 +109,7 @@
             </div>
 
             <div class="col-sm-12 col-md-4">
-                <div class="card shadow mb-5 bg-white rounded" style="width: 18rem;">
+                <div class="card destinations shadow mb-5 bg-white rounded" style="width: 18rem;">
                     <img src="assets/img/destinations/mexique.jpg" class="card-img-top" alt="photo paysage Mexique">
                     <div class="card-body">
                         <h5 class="card-title">Mexique / Cancun</h5>
@@ -140,7 +121,7 @@
             </div>
 
             <div class="col-sm-12 col-md-4">
-                <div class="card shadow mb-5 bg-white rounded" style="width: 18rem;">
+                <div class="card destinations shadow mb-5 bg-white rounded" style="width: 18rem;">
                     <img src="assets/img/destinations/espagne.jpg" class="card-img-top" alt="photo paysage Espagne">
                     <div class="card-body">
                         <h5 class="card-title">Espagne / Barcelone</h5>

@@ -18,9 +18,20 @@
 body {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    background-color: $white;
+
     h5 {
         font-weight: bold;
     }
+}
+
+input[type="radio"] {
+    -webkit-appearance: checkbox;
+    /* Chrome, Safari, Opera */
+    -moz-appearance: checkbox;
+    /* Firefox */
+    -ms-appearance: checkbox;
+    /* not currently supported */
 }
 
 .navbar {
@@ -84,6 +95,20 @@ nav a,
     text-decoration: none !important;
 }
 
+.destinations {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+
+    &:hover {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+    }
+}
+
 .card {
     &-description {
         .name {
@@ -137,25 +162,28 @@ nav a,
     }
 }
 
+
+
 .page-to {
     background-image: url("");
 }
+
 .sidenav {
     height: 100%;
     width: 250px;
     position: fixed;
-    z-index: 1;
     top: 65px;
     left: 0;
     background-color: #111;
-    overflow-x: hidden;
     padding-top: 20px;
+
     a {
         padding: 6px 8px 6px 16px;
         text-decoration: none;
         font-size: 25px;
         color: #818181;
         display: block;
+
         &:hover {
             color: #f1f1f1;
         }
@@ -171,4 +199,8 @@ nav a,
     .sidenav a {
         font-size: 18px;
     }
+}
+
+#affichageCommentaire {
+    padding: 30px;
 }

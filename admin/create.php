@@ -6,18 +6,7 @@ require('../partials/classes/Manager.php');
 require('../partials/classes/Destination.php');
 require('../partials/cfg/db.php');
 require('../partials/debug/pprint.php');
-
-
-
-
-$manager = new Manager($db);
-
-$data = $manager->getAllOperators();
-
-$dest = $manager->getAllDestinations();
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,7 +17,7 @@ $dest = $manager->getAllDestinations();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../assets/vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
-    <title>Document</title>
+    <title>Administrateur</title>
 
 </head>
 
@@ -40,53 +29,45 @@ $dest = $manager->getAllDestinations();
         <a href="/admin/create.php">Ajouter un T.O</a><br>
         <a href="/admin/assign.php">Assigner un T.O / destination</a>
     </div>
-    <div class="container">
-        <form action="../processings/process-assign-to.php" method="post">
 
+    <div class="container adminIndex">
+        <form action="../processings/process-register-to.php" method="post" enctype="multipart/form-data">
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="form-group">
-                        <select id="toSelect" name="toSelect">
-                            <?php
-                            foreach ($data as $d) {
-                                echo
-                                    "<option value=\"{$d['id']}\">
-                                    {$d['name']}</option>";
-                            }
-                            ?>
-                        </select>
+                        <input type="file" style="height:50px;" name="logoTO" accept="image/png, image/jpeg, image/jpg" required>
                     </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="form-group">
-
-                        <select id="destinationSelect" name="destinationSelect">
-                            <option value="maroc">Maroc</option>
-                            <option value="bresil">Bresil</option>
-                            <option value="ilemaurice">Ile Maurice</option>
-                            <option value="portugal">Portugal</option>
-                            <option value="japon">Japon</option>
-                            <option value="usa">USA</option>
-                            <option value="france">France</option>
-                            <option value="mexique">Mexique</option>
-                            <option value="espagne">Espagne</option>
-
-                        </select>
+                        <input class="form-control shadow" name="nomTO" type="text" placeholder="Entrer le nom du T.O" required>
                     </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-12 col-sm-12 col-md-3">
+                <div class="col-12 col-sm-12 col-md-6">
                     <div class="form-group">
-                        <input min="0" class="form-control shadow" name="prix" type="number" placeholder="Entrer le prix" required>
+                        <input class="form-control shadow" name="lienTO" type="text" placeholder="Entrer le lien du site vers le T.O" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label>Premium</label>
+                        <input name="premium" value="1" type="radio">
+                        <input name="premium" value="0" type="radio" style="display: none;" checked>
                     </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-sm-12 col-md-2">
-                    <button name="submit" class="btn btn-outline-orange" type="submit">Assigner votre destination</button>
+                    <button name="submit" class="btn btn-outline-orange" type="submit">
+                        Enregistrer votre T.O
+                    </button>
                 </div>
             </div>
         </form>

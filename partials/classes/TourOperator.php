@@ -8,7 +8,7 @@ class TourOperator
     private $grade;
     private $link;
     private $isPremium;
-
+    private $logoFile;
 
     // Hydratation
     public function __construct(array $hydrate)
@@ -76,5 +76,45 @@ class TourOperator
     public function setIsPremium(int $isPremium)
     {
         $this->isPremium = $isPremium;
+    }
+
+    public function getLogo()
+    {
+        return $this->logoFile['name'];
+    }
+
+    public function setLogo(array $logo)
+    {
+        $this->logoFile = $logo;
+    }
+
+    public function uploadLogoToServer()
+    {
+        $target_dir = "../assets/uploads/operators/";
+        $target_file = $target_dir . basename($this->logoFile['name']);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check if image file is a actual image or fake image
+        $check = getimagesize($this->logoFile["tmp_name"]);
+        if ($check !== false) $uploadOk = 1;
+        else $uploadOk = 0;
+
+        // Check if file already exists
+        // if (file_exists($target_file)) $uploadOk = 0;
+
+        // Check file size
+        if ($this->logoFile["size"] > 8000000) $uploadOk = 0;
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png")
+            $uploadOk = 0;
+
+        // Check if $uploadOk is set to 0 by an error
+        if (!$uploadOk) die('An error occured');
+        else {
+            if (!move_uploaded_file($this->logoFile["tmp_name"], $target_file))
+                return false;
+        }
     }
 }
