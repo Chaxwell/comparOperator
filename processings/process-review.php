@@ -20,4 +20,4 @@ if (isset($_POST['submit'])) {
         ]);
 }
 
-header('Location: ../pages/review.php');
+header('Location: ../pages/review.php?to=' . $_POST['to']);

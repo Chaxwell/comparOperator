@@ -3,6 +3,7 @@ require('../partials/classes/Manager.php');
 require('../partials/debug/pprint.php');
 require('../partials/cfg/db.php');
 require('../partials/classes/Review.php');
+require('../partials/classes/TourOperator.php');
 
 if (isset($_GET['to'])) {
     $manager = new Manager($db);
@@ -11,6 +12,10 @@ if (isset($_GET['to'])) {
     die('Pas de get');
 }
 
+
+$manager = new Manager($db);
+
+$dataOperatorById = $manager->getOperatorById($_GET['to']);
 
 ?>
 <!DOCTYPE html>
@@ -24,12 +29,45 @@ if (isset($_GET['to'])) {
     <link rel="stylesheet" href="../assets/css/styles.css">
     <title>commentaires</title>
 
+    <style>
+        #logoById {
+            padding: 30px;
+            text-transform: capitalize;
+        }
+    </style>
+
 </head>
 
 <body>
     <?php require('../partials/navbar.php') ?>
 
-        <!-- Formulaire our laisser un commentaire -->
+    <?php
+
+    // pprint($dataOperatorById);
+
+    // foreach ($dataOperatorById as $value) {
+    //     echo $value['logo'];
+    // }
+
+    ?>
+    <div id="logoById" class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-12 col-md-6 d-flex justify-content-center">
+                <?php echo '<img  src="../assets/uploads/operators/' . $dataOperatorById[0]['logo'] . '" alt="logo du to " width="150px" height="150px">';
+                ?>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-12 col-md-6 d-flex justify-content-center">
+
+                <?php
+                echo $dataOperatorById[0]['name'];
+                ?>
+            </div>
+
+        </div>
+    </div>
+    <!-- Formulaire our laisser un commentaire -->
 
     <div class="container">
         <div class="row">
@@ -40,9 +78,9 @@ if (isset($_GET['to'])) {
                     </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6">
-            <div class="form-group">
-                <textarea class="form-control shadow" name="commentaireTO" type="text" placeholder="Laisser votre review" required></textarea>
-            </div>
+                <div class="form-group">
+                    <textarea class="form-control shadow" name="commentaireTO" type="text" placeholder="Laisser votre review" required></textarea>
+                </div>
             </div>
 
             <!--BONUS LAISSER UNE NOTE-->
@@ -70,8 +108,8 @@ if (isset($_GET['to'])) {
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
-                                <th>Name</th>
-                                <th>Reviews</th>
+                                <th>Pseudo</th>
+                                <th>Commentaire</th>
                             </thead>
                             <tbody>
                                 <?php
@@ -92,13 +130,13 @@ if (isset($_GET['to'])) {
     </div>
 
 
-        <!-- FIN DU BLOCK COMMENTAIRE -->
+    <!-- FIN DU BLOCK COMMENTAIRE -->
 
-        <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
-        <script src="../assets/vendor/popper.js/dist/popper.min.js"></script>
-        <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/vendor/popper.js/dist/popper.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-        <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>

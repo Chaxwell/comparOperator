@@ -33,9 +33,9 @@ class TourOperator
         return $this->id;
     }
 
-    public function setId($id)
+    public function setId(int $id)
     {
-        $this->id;
+        $this->id = $id;
     }
 
     public function getName()

@@ -38,7 +38,7 @@ $maxNickLength = 12;
 <body class="page-to">
     <?php require('../partials/navbar.php') ?>
 
-    <div class="container">
+    <div class="container to">
         <?php
         if (isset($_GET['destination'])) {
             $destination = htmlspecialchars($_GET['destination']);
@@ -54,7 +54,6 @@ $maxNickLength = 12;
                 foreach ($operators as $operator) {
                     $allDestinations = $manager->getDestinationsByOperatorId($operator['id']);
                     $dataMessages = $manager->getReviewsByOperatorId($operator['id'], 0, 3);
-
 
 
                     echo "<div class=\"row mb-5\">

@@ -139,12 +139,12 @@ nav a,
 
             .message {
                 margin: 0;
-                border-bottom: 1px solid black;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
+                border-bottom: 1px solid #ccc;
+                // border-top-left-radius: 5px;
+                // border-top-right-radius: 5px;
 
                 &.even {
-                    background-color: lighten($lightblue, 10%);
+                    background-color: lighten($lightblue, 13%);
                 }
 
                 &.odd {
@@ -161,7 +161,6 @@ nav a,
 
     }
 }
-
 
 
 .page-to {

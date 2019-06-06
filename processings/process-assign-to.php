@@ -1,13 +1,13 @@
 <?php
 
 if (isset($_POST['submit'])) {
-require('../partials/classes/Manager.php');
-require('../partials/debug/pprint.php');
-require('../partials/cfg/db.php');
-require('../partials/classes/Destination.php');
-require('../partials/classes/TourOperator.php');
+    require('../partials/classes/Manager.php');
+    require('../partials/debug/pprint.php');
+    require('../partials/cfg/db.php');
+    require('../partials/classes/Destination.php');
+    require('../partials/classes/TourOperator.php');
 
-$manager = new Manager($db);
+    $manager = new Manager($db);
 
     $toAssignDestination = new Destination([
         'location' => $_POST['destinationSelect'],

@@ -22,24 +22,42 @@ require('../partials/debug/pprint.php');
 </head>
 
 <body>
-    <?php require('../partials/navbar.php');
-
-    require('../partials/sidebar.php'); ?>
+    <?php require('../partials/navbar.php'); ?>
+    <?php require('../partials/sidebar.php');  ?>
 
     <div class="container adminIndex">
-        <form action="../processings/process-register-to.php" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="../processings/process-update-to.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-sm-12 col-md-6">
-                    <div class="form-group">
-                        <input style="display: none;" type="file" style="height:50px;" name="logoTO" accept="image/png, image/jpeg, image/jpg" required>
+                    <div class="form-group d-flex justify-content-center">
+                        <input type="file" style="display: none;" name="logoTO" accept="image/png, image/jpeg, image/jpg" required>
                         <button onclick="document.querySelector('[type=file]').click();">Parcourir</button>
                     </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-sm-12 col-md-6">
+                    <div class="form-group d-flex justify-content-center">
+                        <select onchange="document.querySelector('[name=updateName]').value =document.querySelector('#jecpa').options[document.querySelector('#jecpa').selectedIndex].innerText.trim().charAt(0).toUpperCase()+document.querySelector('#jecpa').options[document.querySelector('#jecpa').selectedIndex].innerText.trim().slice(1)" style="text-transform: capitalize;" name="existingTos" id="jecpa">
+                            <?php
+                            $manager = new Manager($db);
+                            $data = $manager->getAllOperators();
+
+                            foreach ($data as $d) {
+                                echo
+                                    "<option value=\"{$d['id']}\" style=\"text-transform: capitalize;\">
+                                        {$d['name']}
+                                    </option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-sm-12 col-md-6">
                     <div class="form-group">
-                        <input class="form-control shadow" name="nomTO" type="text" placeholder="Entrer le nom du T.O" required>
+                        <input class="form-control shadow" name="updateName" type="text" required>
                     </div>
                 </div>
             </div>
@@ -50,7 +68,6 @@ require('../partials/debug/pprint.php');
                     </div>
                 </div>
             </div>
-
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="form-group">

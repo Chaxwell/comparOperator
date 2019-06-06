@@ -44,12 +44,38 @@ class Manager
         $q = $this->db
             ->prepare("INSERT INTO tour_operators(name, grade, link, is_premium, logo)
                     VALUES(?, ?, ?, ?, ?)");
+
+        if (!preg_match('/^https?:\/\//', $kwargs['link'])) {
+            $kwargs['link'] = 'http://' . $kwargs['link'];
+        }
+
         $q->execute([
             $kwargs['name'],
             $kwargs['grade'],
             $kwargs['link'],
             $kwargs['isPremium'],
             $kwargs['logo']
+        ]);
+    }
+
+    public function updateTourOperator(array $kwargs, int $idTourOperator)
+    {
+        $q = $this->db
+            ->prepare("UPDATE tour_operators
+                       SET tour_operators.name = ?,
+                           tour_operators.grade = ?,
+                           tour_operators.link = ?,
+                           tour_operators.is_premium = ?,
+                           tour_operators.logo = ?
+                       WHERE tour_operators.id = ?");
+
+        $q->execute([
+            $kwargs['name'],
+            $kwargs['grade'],
+            $kwargs['link'],
+            $kwargs['isPremium'],
+            $kwargs['logo'],
+            $idTourOperator
         ]);
     }
 
@@ -142,6 +168,17 @@ class Manager
     {
         $q = $this->db->prepare("SELECT tour_operators.* FROM tour_operators");
         $q->execute();
+
+        return $q->fetchAll();
+    }
+
+    public function getOperatorById(int $idTourOperator)
+    {
+        $q = $this->db
+            ->prepare("SELECT tour_operators.* FROM tour_operators WHERE tour_operators.id = ?");
+        $q->execute([
+            $idTourOperator
+        ]);
 
         return $q->fetchAll();
     }

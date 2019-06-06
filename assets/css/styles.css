@@ -117,12 +117,10 @@ nav a,
 }
 .card-description .review .message {
   margin: 0;
-  border-bottom: 1px solid black;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-bottom: 1px solid #ccc;
 }
 .card-description .review .message.even {
-  background-color: #d4ebf2;
+  background-color: #e0f0f5;
 }
 .card-description .review .message.odd {
   background-color: whitesmoke;
