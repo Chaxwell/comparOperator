@@ -7,6 +7,7 @@ class Review
     private $message;
     private $author;
     private $idTourOperator;
+    private $grade;
 
 
     // Hydratation
@@ -65,5 +66,15 @@ class Review
     public function setIdTourOperator(int $idTourOperator)
     {
         $this->idTourOperator = $idTourOperator;
+    }
+
+    public function getGrade()
+    {
+        return $this->grade;
+    }
+
+    public function setGrade(int $grade)
+    {
+        $this->grade = $grade;
     }
 }

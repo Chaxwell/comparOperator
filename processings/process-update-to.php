@@ -30,4 +30,4 @@ if (isset($_POST['submit'])) {
     $TourOperator->uploadLogoToServer();
 }
 
-header('Location: ../admin/index.php');
+header('Location: ../admin/update.php');

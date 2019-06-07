@@ -11,18 +11,19 @@ class Manager
 
     // CRUD
     /**
-     * $kwargs = ['message', 'author', 'idTourOperator'];
+     * $kwargs = ['message', 'author', 'grade', 'idTourOperator'];
      */
     public function createReview(array $kwargs)
     {
         $q = $this->db
 
-            ->prepare("INSERT INTO reviews(message, author, id_tour_operator)
-                    VALUES(?, ?, ?)");
+            ->prepare("INSERT INTO reviews(message, author, id_tour_operator, grade)
+                    VALUES(?, ?, ?, ?)");
         $q->execute([
             $kwargs['message'],
             $kwargs['author'],
-            $kwargs['idTourOperator']
+            $kwargs['idTourOperator'],
+            $kwargs['grade']
         ]);
     }
 
@@ -181,5 +182,54 @@ class Manager
         ]);
 
         return $q->fetchAll();
+    }
+
+    public function getAverageGradeByOperatorId(int $idTourOperator)
+    {
+        $q = $this->db
+            ->prepare("SELECT AVG(reviews.grade) AS average
+                       FROM reviews
+                       WHERE reviews.id_tour_operator = ?");
+        $q->execute([
+            $idTourOperator
+        ]);
+
+        return $q->fetch()['average'];
+    }
+
+    public function updateAverageGradeForOperatorId($avg, int $idTourOperator)
+    {
+        $q = $this->db
+            ->prepare("UPDATE tour_operators
+                       SET tour_operators.grade = ?
+                       WHERE tour_operators.id = ?");
+        $q->execute([
+            round($avg),
+            $idTourOperator
+        ]);
+    }
+
+    public function drawGrades($grade)
+    {
+        switch ($grade) {
+            case 1:
+                return "&starf;&star;&star;&star;&star;";
+                break;
+            case 2:
+                return "&starf;&starf;&star;&star;&star;";
+                break;
+            case 3:
+                return "&starf;&starf;&starf;&star;&star;";
+                break;
+            case 4:
+                return "&starf;&starf;&starf;&starf;&star;";
+                break;
+            case 5:
+                return "&starf;&starf;&starf;&starf;&starf;";
+                break;
+            default:
+                return "";
+                break;
+        }
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
-function pprint($array) {
-    return '<pre>' . var_export($array) . '</pre>';
+function pprint($var) {
+    echo '<pre>' . var_export($var, true) . '</pre>';
 }
+

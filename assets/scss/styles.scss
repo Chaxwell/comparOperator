@@ -15,10 +15,22 @@
     -o-border-radius: $-radius;
 }
 
+::-moz-selection {
+    /* Code for Firefox */
+    color: $white;
+    background: $orange;
+}
+
+::selection {
+    color: $white;
+    background: $orange;
+}
+
 body {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     background-color: $white;
+
 
     h5 {
         font-weight: bold;
@@ -27,16 +39,14 @@ body {
 
 input[type="radio"] {
     -webkit-appearance: checkbox;
-    /* Chrome, Safari, Opera */
     -moz-appearance: checkbox;
-    /* Firefox */
     -ms-appearance: checkbox;
-    /* not currently supported */
 }
 
 .navbar {
     border-bottom: 1px solid $transparent-gray;
     @include box-shadow(0, 0, 15px, 4px, rgba(207, 207, 207, 0.35));
+    user-select: none;
 
     &-title {
         font-size: 2em;
@@ -110,11 +120,17 @@ nav a,
 }
 
 .card {
+    user-select: none;
+
     &-description {
         .name {
             font-size: 2.3em;
             font-family: 'Karla', sans-serif;
             text-transform: capitalize;
+
+            .stars {
+                color: $orange;
+            }
         }
 
         .location {
@@ -202,4 +218,12 @@ nav a,
 
 #affichageCommentaire {
     padding: 30px;
+}
+
+
+@media screen and (max-width: 768px) {
+    td {
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
 }

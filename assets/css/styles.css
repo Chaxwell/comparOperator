@@ -7,6 +7,17 @@
   width: 85%;
 }
 
+::-moz-selection {
+  /* Code for Firefox */
+  color: whitesmoke;
+  background: orange;
+}
+
+::selection {
+  color: whitesmoke;
+  background: orange;
+}
+
 body {
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
@@ -18,11 +29,8 @@ body h5 {
 
 input[type=radio] {
   -webkit-appearance: checkbox;
-  /* Chrome, Safari, Opera */
   -moz-appearance: checkbox;
-  /* Firefox */
   -ms-appearance: checkbox;
-  /* not currently supported */
 }
 
 .navbar {
@@ -30,6 +38,7 @@ input[type=radio] {
   -webkit-box-shadow: 0 0 15px 4px rgba(207, 207, 207, 0.35);
   -moz-box-shadow: 0 0 15px 4px rgba(207, 207, 207, 0.35);
   box-shadow: 0 0 15px 4px rgba(207, 207, 207, 0.35);
+  user-select: none;
 }
 .navbar-title {
   font-size: 2em;
@@ -93,10 +102,16 @@ nav a,
   transition: 0.3s ease-in-out;
 }
 
+.card {
+  user-select: none;
+}
 .card-description .name {
   font-size: 2.3em;
   font-family: "Karla", sans-serif;
   text-transform: capitalize;
+}
+.card-description .name .stars {
+  color: orange;
 }
 .card-description .location {
   font-size: 1.6em;
@@ -166,6 +181,13 @@ nav a,
 }
 #affichageCommentaire {
   padding: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  td {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

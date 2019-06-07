@@ -14,8 +14,9 @@ $allowedDestinations = [
     'usa',
     'mexique',
     'france',
-    'ile%20maurice',
-    'espagne'
+    'ile maurice',
+    'espagne',
+    'test'
 ];
 
 $maxReviewLength = 100;
@@ -47,9 +48,8 @@ $maxNickLength = 12;
                 'location' => $destination,
             ]);
 
-            // par exemple : maroc
             if (in_array($destination, $allowedDestinations)) {
-                $operators = $manager->getOperatorByDestination($destination);
+                $operators = $manager->getOperatorByDestination(str_replace(' ', '', $destination));
                 if ($operators == null) echo "<h5 class=\"text-center\">Il n'y a pas de TO pour cette destination.</h5>";
                 foreach ($operators as $operator) {
                     $allDestinations = $manager->getDestinationsByOperatorId($operator['id']);
@@ -69,13 +69,16 @@ $maxNickLength = 12;
                                 <a href=\"{$operator['link']}\" target=\"_blank\" class=\"btn btn-outline-orange w-100\">Visiter</a>
                             </div>";
                     }
+                    $grade = $manager->getAverageGradeByOperatorId($operator['id']);
                     echo " </div>
                     <div class=\"card-description col-10 col-sm-7 col-md-9 my-3 ml-3 text-center\">
                         <div class=\"row no-gutters\">
-                            <div class=\"name col-12 col-sm-12 col-md-12 col-lg-5\">
-                                {$operator['name']}
+                            <div class=\"name col-12 col-sm-12 col-md-12 col-lg-8\">
+                                {$operator['name']} &nbsp; <span class=\"stars\">" .
+                        $manager->drawGrades((int)$grade) . "</span>";
+                    echo "
                             </div>
-                            <div class=\"location col-12 col-sm-12 col-md-12 col-lg-7 pt-2 mb-3\">
+                            <div class=\"location col-12 col-sm-9 col-md-9 col-lg-4 pt-2 mb-3\">
                                 {$destination}
                             </div>
                         </div>
@@ -93,14 +96,14 @@ $maxNickLength = 12;
                         if ($n % 2 == 0) {
                             echo "<p class=\"message even\">
                                         <span class=\"grade d-flex justify-content-center flex-wrap\">
-                                            &starf;&starf;&starf;&star;&star;
+
                                         </span>
                                         <i>{$data['author']} :</i> {$data['message']}
                                     </p>";
                         } else {
                             echo "<p class=\"message odd\">
                                     <span class=\"grade d-flex justify-content-center flex-wrap\">
-                                        &starf;&starf;&starf;&starf;&starf;
+
                                     </span>
                                     <i>{$data['author']} :</i> {$data['message']}
                                     </p>";
@@ -120,12 +123,12 @@ $maxNickLength = 12;
                         </div>
                         <!-- Makes the whole card clickable -->
                         <a href=\"review.php?to={$operator['id']}\" class=\"stretched-link\"></a>
+                        </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-            ";
-                };
+                    </div>
+                ";
+                }
             }
         } ?>
     </div>

@@ -71,28 +71,31 @@ $dataOperatorById = $manager->getOperatorById($_GET['to']);
 
     <div class="container">
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-4">
-                <form action="../processings/process-review.php" method="post">
+            <div class="col-12 col-sm-12 col-md-3">
+                <form action="../processings/process-review.php" method="post" autocomplete="off">
                     <div class="form-group">
-                        <input class="form-control shadow" name="nom" type="text" placeholder="Nom ou pseudo" required>
+                        <input class="form-control" name="nom" type="text" placeholder="Nom ou pseudo" required>
                     </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6">
                 <div class="form-group">
-                    <textarea class="form-control shadow" name="commentaireTO" type="text" placeholder="Laisser votre review" required></textarea>
+                    <textarea rows="1" class="form-control" name="commentaireTO" type="text" placeholder="Laisser votre review" required></textarea>
                 </div>
             </div>
 
-            <!--BONUS LAISSER UNE NOTE-->
-
-            <!-- <div class="col-sm-12 col-md-3">
-                <div class="form-group">
-                <input class="form-control shadow" name="noteTO" type="text placeholder="Laisser une note /5">
-            </div> -->
+            <div class="col-sm-12 col-md-3">
+                <select name="grades" class="form-control">
+                    <option value="0">Laissez une note</option>
+                    <option value="1" style="color: orange;">&starf;&star;&star;&star;&star;</option>
+                    <option value="2" style="color: orange;">&starf;&starf;&star;&star;&star;</option>
+                    <option value="3" style="color: orange;">&starf;&starf;&starf;&star;&star;</option>
+                    <option value="4" style="color: orange;">&starf;&starf;&starf;&starf;&star;</option>
+                    <option value="5" style="color: orange;">&starf;&starf;&starf;&starf;&starf;</option>
+                </select>
+            </div>
 
             <input type="hidden" name="to" value="<?= $_GET['to'] ?>">
-
-            <div class="col-sm-12 col-md-2">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex mt-3 justify-content-center">
                 <button id="btn-commentaire" name="submit" class="btn btn-outline-orange" type="submit">Envoyer votre review</button>
             </div>
             </form>
@@ -110,14 +113,17 @@ $dataOperatorById = $manager->getOperatorById($_GET['to']);
                             <thead>
                                 <th>Pseudo</th>
                                 <th>Commentaire</th>
+                                <th>Note</th>
                             </thead>
                             <tbody>
                                 <?php
                                 foreach ($data as $d) {
+                                    $d['grade'] = $manager->drawGrades($d['grade']);
                                     echo '
                                     <tr>
                                     <td>' . $d['author'] . '</td>
                                     <td>' . $d['message'] . '</td>
+                                    <td style="color: orange; user-select:none;">' . $d['grade'] . '</td>
                                     </tr>';
                                 }
                                 ?>
